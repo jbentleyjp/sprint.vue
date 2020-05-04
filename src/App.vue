@@ -1,11 +1,15 @@
 <template>
   <div id="app">
-    <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
-    <!-- <h1>{{ title }}</h1> -->
     <navbar />
-    <div v-for="photo in photos" :key="photo.id">
-      <!-- {{console.log("keysssss>>>",photo.key)}} -->
-      <allphotos :photoKey="photo.photoKey" />
+    <div v-if="currentView">
+      <div v-for="photo in photos" :key="photo.id">
+        <allphotos
+        v-on:toggle="toggleView(photo.photoKey)"
+        :photoKey="photo.photoKey" />
+      </div>
+    </div>
+    <div v-else>
+      <singlephoto :onePhotoKey="selectedPhoto"/>
     </div>
   </div>
 </template>
@@ -13,20 +17,28 @@
 <script>
 import Navbar from "./components/Navbar";
 import AllPhotos from "./components/AllPhotos";
+import SinglePhoto from "./components/SinglePhoto";
 import { getSingleObject, listObjects } from "../utils/index.js";
 
 export default {
   name: "App",
   components: {
     navbar: Navbar,
-    allphotos: AllPhotos
+    allphotos: AllPhotos,
+    singlephoto: SinglePhoto
   },
   data: () => ({
-    // title: "Photo Upload App",
     currentView: true,
     photos: [],
     selectedPhoto: ""
   }),
+  methods: {
+    toggleView(baseString) {
+      this.currentView = false;
+      console.log(baseString);
+      this.selectedPhoto = baseString;
+    }
+  },
   created: async function() {
     const listPhotos = await listObjects();
     const photoKeys = await Promise.all(listPhotos.map(photo => photo.Key));

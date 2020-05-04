@@ -1,6 +1,9 @@
 <template>
   <div>
-    <img :src="`data:image/png;base64,${photoKey}`" class="allPhotos" />
+    <img
+      @click="$emit('toggle')"
+      :src="`data:image/png;base64,${photoKey}`"
+    />
   </div>
 </template>
 
@@ -11,9 +14,8 @@ export default {
 };
 </script>
 
-
 <style scope>
-.allPhotos {
+img {
   width: 244px;
   height: 244px;
   display: grid;
