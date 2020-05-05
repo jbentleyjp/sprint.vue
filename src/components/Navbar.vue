@@ -1,6 +1,6 @@
 <template>
   <div class="navbar">
-    <h1 class="navbar-header">{{ title }}</h1>
+    <h1 @click="$emit('togHome')" class="navbar-header">{{ title }}</h1>
     <upload />
   </div>
 </template>

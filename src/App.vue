@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <navbar />
-    <div v-if="currentView && photos.length > 0">
+    <navbar v-on:togHome="toggleHome"/>
+    <div v-if="currentView && photos.length > 1">
       <div v-for="photo in photos" :key="photo.id">
         <allphotos v-on:toggle="toggleView(photo.photoKey)" :pKey="photo.photoKey" />
       </div>
@@ -33,8 +33,10 @@ export default {
   methods: {
     toggleView(baseString) {
       this.currentView = false;
-      console.log(baseString);
       this.selectedPhoto = baseString;
+    },
+    toggleHome() {
+      this.currentView = true;
     }
   },
   created: async function() {
@@ -51,7 +53,7 @@ export default {
       })
     );
     this.photos = baseStrings;
-    console.log(this.photos);
+    // console.log(this.photos);
     // return baseStrings
   }
 };
