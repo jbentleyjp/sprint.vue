@@ -1,15 +1,13 @@
 <template>
   <div id="app">
     <navbar />
-    <div v-if="currentView">
+    <div v-if="currentView && photos.length > 0">
       <div v-for="photo in photos" :key="photo.id">
-        <allphotos
-        v-on:toggle="toggleView(photo.photoKey)"
-        :photoKey="photo.photoKey" />
+        <allphotos v-on:toggle="toggleView(photo.photoKey)" :pKey="photo.photoKey" />
       </div>
     </div>
     <div v-else>
-      <singlephoto :onePhotoKey="selectedPhoto"/>
+      <singlephoto :onePhotoKey="selectedPhoto" />
     </div>
   </div>
 </template>
@@ -53,7 +51,7 @@ export default {
       })
     );
     this.photos = baseStrings;
-    // console.log(baseStrings);
+    console.log(this.photos);
     // return baseStrings
   }
 };

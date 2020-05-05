@@ -2,7 +2,7 @@
   <div>
     <img
       @click="$emit('toggle')"
-      :src="`data:image/png;base64,${photoKey}`"
+      :src="`data:image/jpeg;base64,${pKey}`"
     />
   </div>
 </template>
@@ -10,7 +10,7 @@
 <script>
 export default {
   name: "AllPhotos",
-  props: ["photoKey"]
+  props: ["pKey"]
 };
 </script>
 
