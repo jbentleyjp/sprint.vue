@@ -1,6 +1,6 @@
 <template>
-  <div >
-    <img :src="`data:image/png;base64,${onePhotoKey}`"/>
+  <div>
+    <img class="single-photo" :src="`data:image/png;base64,${onePhotoKey}`" />
   </div>
 </template>
 
@@ -12,8 +12,8 @@ export default {
 </script>
 
 <style scope>
-img {
-  width: 50%;
-  height: 50%
+.single-photo {
+  width: 100%;
+  height: 90vh;
 }
 </style>

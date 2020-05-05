@@ -63,4 +63,8 @@ export default {
 #app {
   text-align: center;
 }
+
+img {
+  width: 200px;
+}
 </style>
